@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsDoc = require('swagger-jsdoc');
+const cors = require('cors'); // Importação do CORS
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -15,8 +16,11 @@ mongoose.connect('mongodb+srv://manoela:senha123@cluster1.lthyp.mongodb.net/?ret
     console.error('Erro ao conectar ao MongoDB', err);
 });
 
+// Usar CORS sem restrições
+app.use(cors()); // Permitir qualquer origem
+
 // Middleware para parsear JSON
-app.use(express.json());
+app.use(express.json()); // Análise do corpo das requisições JSON
 
 // Swagger setup
 const swaggerOptions = {
@@ -33,7 +37,7 @@ const swaggerOptions = {
             },
         ],
     },
-    apis: ["./routes/registrosRoutes.js"], // Caminhos dos arquivos com anotações do Swagger
+    apis: ["./routes/registrosRoutes.js"], // Caminho do arquivo com anotações Swagger
 };
 
 // Inicializa o Swagger
@@ -43,7 +47,6 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 // Importar e usar as rotas
 const registrosRoutes = require('./routes/registrosRoutes');
 app.use('/api/registros', registrosRoutes);
-
 
 // Iniciar o servidor
 app.listen(PORT, () => {

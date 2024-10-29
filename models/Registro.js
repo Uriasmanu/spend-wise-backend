@@ -1,24 +1,34 @@
 // models/Registro.js
+
 const mongoose = require('mongoose');
 
-const RegistroSchema = new mongoose.Schema({
-    data: {
-        type: Date,
-        required: true,
-    },
-    valor: {
-        type: Number,
-        required: true,
-    },
-    descricao: {
-        type: String,
-        required: true,
-    },
-    categoria: {
-        type: String,
-        default: null,
-    },
-}, { timestamps: true });
+// Definindo o esquema para o modelo Registro
+const registroSchema = new mongoose.Schema({
+  categoria: {
+    type: String,
+    default: null,
+  },
+  data: {
+    type: Date,
+    required: true,
+  },
+  descricao: {
+    type: String,
+    required: true,
+  },
+  identificador: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  valor: {
+    type: Number,
+    required: true,
+  },
+});
 
-const Registro = mongoose.model('Registro', RegistroSchema);
+// Criando o modelo com base no esquema definido
+const Registro = mongoose.model('Registro', registroSchema);
+
+// Exportando o modelo para ser usado em outras partes do aplicativo
 module.exports = Registro;

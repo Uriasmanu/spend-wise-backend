@@ -1,6 +1,6 @@
 // routes/registrosRoutes.js
 const express = require('express');
-const Registro = require('../models/Registro'); // Importar o modelo Registro
+const Registro = require('../models/Registro');
 const router = express.Router();
 
 /**
@@ -23,16 +23,22 @@ const router = express.Router();
  *           schema:
  *             type: object
  *             properties:
+ *               categoria:
+ *                 type: string
+ *                 example: null
  *               data:
  *                 type: string
  *                 format: date
- *               valor:
- *                 type: number
+ *                 example: "2024-10-19"
  *               descricao:
  *                 type: string
- *               categoria:
+
+ *               identificador:
  *                 type: string
- *                 nullable: true
+ *  
+ *               valor:
+ *                 type: number
+
  *     responses:
  *       201:
  *         description: Registro criado com sucesso
@@ -58,8 +64,6 @@ router.post('/', async (req, res) => {
  *     responses:
  *       200:
  *         description: Lista de registros
- *       500:
- *         description: Erro no servidor
  */
 router.get('/', async (req, res) => {
     try {
@@ -70,7 +74,6 @@ router.get('/', async (req, res) => {
     }
 });
 
-// Rota para buscar um registro pelo ID
 /**
  * @swagger
  * /api/registros/{id}:
@@ -89,8 +92,6 @@ router.get('/', async (req, res) => {
  *         description: Registro encontrado
  *       404:
  *         description: Registro não encontrado
- *       500:
- *         description: Erro no servidor
  */
 router.get('/:id', async (req, res) => {
     try {
@@ -104,7 +105,6 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-// Rota para atualizar um registro
 /**
  * @swagger
  * /api/registros/{id}:
@@ -125,19 +125,25 @@ router.get('/:id', async (req, res) => {
  *           schema:
  *             type: object
  *             properties:
+ *               categoria:
+ *                 type: string
+ *                 example: null
  *               data:
  *                 type: string
  *                 format: date
- *               valor:
- *                 type: number
+ *                 example: "2024-10-19"
  *               descricao:
  *                 type: string
- *               categoria:
+ *                 example: "Transferência atualizada"
+ *               identificador:
  *                 type: string
- *                 nullable: true
+ *                 example: "6713a2c2-cdaf-4ede-a406-b8ee7fad4daf"
+ *               valor:
+ *                 type: number
+ *                 example: 450.00
  *     responses:
  *       200:
- *         description: Registro atualizado
+ *         description: Registro atualizado com sucesso
  *       404:
  *         description: Registro não encontrado
  *       400:
@@ -155,7 +161,6 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-// Rota para deletar um registro
 /**
  * @swagger
  * /api/registros/{id}:
@@ -174,8 +179,6 @@ router.put('/:id', async (req, res) => {
  *         description: Registro deletado com sucesso
  *       404:
  *         description: Registro não encontrado
- *       500:
- *         description: Erro no servidor
  */
 router.delete('/:id', async (req, res) => {
     try {
