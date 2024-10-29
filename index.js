@@ -23,9 +23,9 @@ const swaggerOptions = {
     swaggerDefinition: {
         openapi: "3.0.0",
         info: {
-            title: "API Exemplo",
+            title: "API Finanças",
             version: "1.0.0",
-            description: "Documentação da API Exemplo",
+            description: "Documentação da API Finanças",
         },
         servers: [
             {
@@ -33,11 +33,17 @@ const swaggerOptions = {
             },
         ],
     },
-    apis: ["index.js"], // Caminho dos arquivos com anotações do Swagger
+    apis: ["./routes/registrosRoutes.js"], // Caminhos dos arquivos com anotações do Swagger
 };
 
+// Inicializa o Swagger
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
+// Importar e usar as rotas
+const registrosRoutes = require('./routes/registrosRoutes');
+app.use('/api/registros', registrosRoutes);
+
 
 // Iniciar o servidor
 app.listen(PORT, () => {
