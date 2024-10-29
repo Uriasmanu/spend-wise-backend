@@ -1,0 +1,37 @@
+# Node modules
+node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Environment variables
+.env
+
+# Build output
+dist
+build
+out
+
+# Coverage reports
+coverage/
+
+# IDEs and Editors
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Misc
+*.tgz
+*.gz
+*.zip
+*.tar
+
+# Swagger UI documentation
+/api-docs

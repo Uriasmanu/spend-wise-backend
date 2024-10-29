@@ -11,6 +11,10 @@
   "description": "",
   "dependencies": {
     "express": "^4.21.1",
-    "spend-wise-backend": "file:"
+    "mongodb": "^6.10.0",
+    "mongoose": "^8.7.3",
+    "spend-wise-backend": "file:",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
   }
 }
