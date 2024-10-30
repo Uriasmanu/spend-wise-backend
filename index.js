@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsDoc = require('swagger-jsdoc');
-const cors = require('cors'); // Importação do CORS
+const cors = require('cors'); 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -20,7 +20,7 @@ mongoose.connect('mongodb+srv://manoela:senha123@cluster1.lthyp.mongodb.net/?ret
 app.use(cors()); // Permitir qualquer origem
 
 // Middleware para parsear JSON
-app.use(express.json()); // Análise do corpo das requisições JSON
+app.use(express.json()); 
 
 // Swagger setup
 const swaggerOptions = {
@@ -37,7 +37,7 @@ const swaggerOptions = {
             },
         ],
     },
-    apis: ["./routes/registrosRoutes.js"], // Caminho do arquivo com anotações Swagger
+    apis: ["./routes/registrosRoutes.js"], 
 };
 
 // Inicializa o Swagger
